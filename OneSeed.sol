@@ -685,7 +685,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
     ) external;
 }
 
-contract AuditContract is Context, IERC20, Ownable {
+contract OneSeed is Context, IERC20, Ownable {
     using SafeMath for uint256;
     using Address for address;
 
@@ -709,8 +709,8 @@ contract AuditContract is Context, IERC20, Ownable {
     uint256 private _tTotal = 10 * 10 ** 10;
     uint256 private _rTotal = 10 * 10 ** 10;
     uint256 private _tFeeTotal;
-    string private _name = "AuditContract";
-    string private _symbol = "AuditContract";
+    string private _name = "OneSeed";
+    string private _symbol = "SEED";
     uint8 private _decimals = 2;
     uint256 public _taxFee = 0;
     uint256 private _previousTaxFee = _taxFee;
@@ -1224,7 +1224,7 @@ contract AuditContract is Context, IERC20, Ownable {
         require(!_stakeholders[_msgSender()].locked, 'locked already');
 
         _stakeholders[_msgSender()].locked = true;
-        _stakeholders[_msgSender()].lockedUntil = now + time;
+        _stakeholders[_msgSender()].lockedUntil = now.add(time);
         _stakeholders[_msgSender()].lockedReturn = _stakingInterest;
 
     }
